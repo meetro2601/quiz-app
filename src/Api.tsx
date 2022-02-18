@@ -1,7 +1,7 @@
-export enum Difficulty {
-  EASY = "easy",
-  MEDIUM = "medium",
-  HARD = "hard",
+export type UserInputtype = {
+  totalQues: number
+  difficulty: string 
+  category: number
 }
 
 const shuffleArray = (array: any[]) => {
@@ -17,9 +17,9 @@ export type Question = {
   incorrect_answers: string[];
 };
 
-// https://opentdb.com/api.php?amount=10
-export const fetchQuizData = async (amount: number, difficulty: Difficulty) => {
-  const url = `https://opentdb.com/api.php?amount=${amount}&difficuly=${difficulty}&type=multiple`;
+
+export const fetchQuizData = async ({totalQues,difficulty,category}:UserInputtype) => {
+  const url = `https://opentdb.com/api.php?amount=${totalQues}&category=${category}&difficuly=${difficulty}&type=multiple`;
   const res = await fetch(url);
   const data = await res.json();
 
